@@ -1,0 +1,32 @@
+%% Calculate the angular acceleration of a rod
+%% Calculate the acceleration of the centroid
+%% Calculate the acceleration at the end of the rod.
+%%
+%% Set up initial condition
+%%
+m = 7;
+l = 4; 
+u = 0.25;
+D = [-37 114 0];
+g = 9.8;
+% All these numbers above can be changed according to the problem.
+I = m*l^2/12+m*(l/2)^2;
+G = [0 -m*g 0];
+%% Notice the vector QP and QC should be changed for specific problem.
+rQP = [l 0 0];
+rQC = [l/2 0 0];
+alpha = (cross(rQP,D)+cross(rQC,G))/I;
+%% Solving for the reaction force at Q, and the acceleration at Q.
+%%
+syms x y;
+FQ = [ 0 y 0];
+Ff = [u*y 0 0];
+aQ = [x 0 0];
+aC = (G+D+FQ+Ff)/m;
+[x y] = vpasolve(aC == aQ+cross(alpha,rQC));
+%% Final answer for aQ, aP, aC and agular acceleration
+%%
+aQ = [x 0 0];
+aP = vpa(aQ+cross(alpha,rQP))
+aC = vpa(aQ + cross(alpha,rQC))
+alpha
