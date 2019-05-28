@@ -1,0 +1,21 @@
+%% Given y = cos(1.5x), v is a constant value. A point moving along the curve. Determine the force on the point.
+%% Given Values
+%%
+m = 8
+g = -9.8
+v = 2
+syms x vx ax;
+%% Solve for vx
+%%
+r = [x cos(1.5*x)];
+vel = diff(r)*vx;
+[vx] = vpasolve(norm(subs(vel,x,9))==v);
+%% Solve for ax
+%%
+vel = subs(diff(r)*vx,x,9);
+a = subs(diff(r)*ax+diff(diff(r))*vx^2,x,9);
+[ax] = vpasolve(dot(a,vel)==0)
+a = vpa(subs(diff(r)*ax+diff(diff(r))*vx^2,x,9))
+%% Solve for Fw
+G = [0 m*g];
+Fw = m*a-G
