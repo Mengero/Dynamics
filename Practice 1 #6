@@ -1,0 +1,10 @@
+%% Calculate the moment of intertia.
+%%
+p = 3;x1 = 1;x2 = 2;
+syms x;
+y1 = -x^2+4*x-5;
+y2 = -x^2-2*x+10;
+m = int(int(p,y,y1,y2),x,x1,x2);
+xbar = int(int(x*p,y,y1,y2),x,x1,x2)/m;
+ybar = int(int((y1+y2)/2*p,y,y1,y2),x,x1,x2)/m;
+Ic = vpa(int(int(p*((x-xbar)^2+(y-ybar)^2),y,y1,y2),x,x1,x2))
