@@ -1,0 +1,4 @@
+Acceleration on the edge of the gear is different from the velocity on the edge of the gear.
+For the velocity, if the gears are in touch with each other, then all the velocities have the same magnitude.
+However, for the acceleration, if the gears are in touch, then consider the centripital acceleration, which is closely related to the radius
+of the gear.
