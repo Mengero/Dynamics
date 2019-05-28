@@ -14,7 +14,8 @@ vel = diff(r)*vx;
 %%
 vel = subs(diff(r)*vx,x,9);
 a = subs(diff(r)*ax+diff(diff(r))*vx^2,x,9);
-[ax] = vpasolve(dot(a,vel)==0)
+[ax] = vpasolve(dot(a,vel)==0) % Since that the magnitude of the velocity of the point is constant, the acceleration vector must be 
+                               % perpendicular to the velocity vector.
 a = vpa(subs(diff(r)*ax+diff(diff(r))*vx^2,x,9))
 %% Solve for Fw
 G = [0 m*g];
