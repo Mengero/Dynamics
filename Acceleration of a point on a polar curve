@@ -1,0 +1,9 @@
+w = -2;
+s = 2;
+alpha = -2;
+syms theta;
+r = (3-cos(4*theta+2))*[cos(theta) sin(theta)];
+v = vpa(subs(diff(r)*w,theta,s));
+a = vpa(subs(diff(r)*alpha+diff(diff(r))*w^2,theta,s));
+dot(r,v)
+dot(a,v)
