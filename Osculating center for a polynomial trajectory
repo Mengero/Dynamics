@@ -1,0 +1,15 @@
+t = 0:0.05:2;
+x = t.^2+2;
+y = -3.*t.^2+t;
+plot(x,y)
+syms t;
+r = [t^2+2 -3*t^2+t 0];
+v = subs(diff(r),t,1)
+a = subs(diff(diff(r)),t,1);
+p = norm(v)^3/norm(cross(v,a));
+r = subs(r,t,1);
+en = [-5 -2 0]/norm([-5 -2 0])
+C = vpa(p*en+r)
+
+%% Note: The key step is to plot out the figure of the function and judge the direction of en vector.
+%% For calculating the en vector, it is perpendicular to the velocity vector. Thus, use the value of velocity to calculate the en vector.
