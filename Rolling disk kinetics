@@ -1,0 +1,16 @@
+%% This problem is really complicated. We need to solve it in several steps/
+%% First, Assumption: not slip (slip).
+%%
+m = 2;r = 3;D = [8 9 0];g = 9.8;u = 0.5;
+G = [0 -m*g 0];
+Fn = -[0 D(2) 0]-G;
+syms alpha Ff;
+M = Ff*r-D(1)*r;
+I = 0.5*m*r^2;
+[Ff alpha] = vpasolve(alpha == M/I,Ff == m*(alpha*-r)-D(1))
+aC = [alpha*-r 0 0]
+aP = aC + cross([0 0 alpha],[0 r 0])
+aQ = aC + cross([0 0 alpha],[0 -r 0])
+%% Note: in this assumption, we can't use the friction ratio. That is, we have to use F = ma, M = I*alpha, and force equivalance to solve
+%%       the problem.
+%% If it is not stick: aQ != 0, assume a possible slip direction.
